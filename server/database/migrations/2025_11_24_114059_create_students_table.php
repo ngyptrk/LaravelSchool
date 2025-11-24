@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
            Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('diakNev');
@@ -26,7 +25,6 @@ return new class extends Migration
             $table->decimal('atlag', 2, 1)->nullable();
             $table->decimal('osztondij', 10, 0)->nullable();
             $table->timestamps();
-        });
         });
     }
 
