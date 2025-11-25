@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\sports;
-use App\Http\Requests\StoresportsRequest;
-use App\Http\Requests\UpdatesportsRequest;
+use App\Models\Playingsport;
+use App\Http\Requests\StorePlayingsportRequest;
+use App\Http\Requests\UpdatePlayingsportRequest;
 
-class SportsController extends Controller
+class PlayingsportsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class SportsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoresportsRequest $request)
+    public function store(StorePlayingsportRequest $request)
     {
         //
     }
@@ -27,7 +27,7 @@ class SportsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(sports $sports)
+    public function show(Playingsport $playingsports)
     {
         //
     }
@@ -35,7 +35,7 @@ class SportsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatesportsRequest $request, sports $sports)
+    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport)
     {
         //
     }
@@ -43,7 +43,7 @@ class SportsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(sports $sports)
+    public function destroy(Playingsport $playingsport)
     {
         //
     }
