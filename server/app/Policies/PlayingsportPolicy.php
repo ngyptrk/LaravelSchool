@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\sports;
+use App\Models\playingsport;
 use Illuminate\Auth\Access\Response;
 
-class SportsPolicy
+class PlayingsportsPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class SportsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, sports $sports): bool
+    public function view(User $user, Playingsport $playingsport): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class SportsPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, sports $sports): bool
+    public function update(User $user, Playingsport $playingsport): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class SportsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, sports $sports): bool
+    public function delete(User $user, Playingsport $playingsport): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class SportsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, sports $sports): bool
+    public function restore(User $user, Playingsport $playingsport): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class SportsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, sports $sports): bool
+    public function forceDelete(User $user, Playingsport $playingsport): bool
     {
         return false;
     }
