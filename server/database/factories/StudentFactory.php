@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Schoolclass;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,100 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class StudentFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected function withFaker()
+    {
+        return \Faker\Factory::create('hu_HU');
+    }
+
+    function getScholarShip(float $atlag): int
+    {
+        //     // float -> integer normalizálás (pl. 4.1 = 41)
+        //     $norm = (int) round($atlag * 10);
+
+        //     // tömbös szabályok: [határérték, ösztöndíj]
+        //     $szabalyok = [
+        //         ['max' => 19, 'penz' => 0],       // 1.0 – 1.9
+        //         ['max' => 24, 'penz' => 8000],    // 2.0 – 2.4
+        //         ['max' => 34, 'penz' => 25000],   // 2.5 – 3.4
+        //         ['max' => 44, 'penz' => 42000],   // 3.5 – 4.4
+        //         ['max' => 50, 'penz' => 59000],   // 4.5 – 5.0
+        //     ];
+
+        //     foreach ($szabalyok as $rule) {
+        //         if ($norm <= $rule['max']) {
+        //             return $rule['penz'];
+        //         }
+        //     }
+
+        //     // elvileg sose fut ide, de biztonságnak marad
+        //     return 0;
+
+        $osztondijTabla = [
+            '2.0' => 8000,
+            '2.5' => 16000,
+            '3.5' => 25000,
+            '4.5' => 42000,
+        ];
+
+        foreach ($osztondijTabla as $hatar => $osszeg) {
+            if ($atlag < $hatar) {
+                return $osszeg;
+            }
+        }
+        return 59000;
+    }
+
+
+
+
     public function definition(): array
     {
+        // Nem & név
+        $neme = $this->faker->boolean;
+        $gender = $neme ? 'male' : 'female';
+
+        $firstName = $this->faker->firstName($gender);
+        $lastName = $this->faker->lastName();
+        $diakNev = "$lastName $firstName";
+
+        // Személyes adatok
+        $iranyitoszam = $this->faker->postcode();
+        $lakHelyseg = $this->faker->city();
+        $szulHelyseg = $this->faker->city();
+        $lakCim = $this->faker->streetAddress();
+        $igazolvanyszam = strtoupper($this->faker->bothify('??######'));
+
+        // Átlag – FIX
+        $atlag = rand(10, 50) / 10;  // 1.0 - 5.0 pontos tizedes
+
+        // Ösztöndíj
+        $osztondij = $this->getScholarShip($atlag);
+
+        // Osztály és születési dátum
+        $randomClass = Schoolclass::inRandomOrder()->first();
+        $schoolclassId = $randomClass->id;
+
+        $grade = (int)substr($randomClass->osztalyNev, 0, 1);
+        $ageMin = $grade + 5;
+        $ageMax = $grade + 6;
+
+        $szulDatum = $this->faker->dateTimeBetween(
+            "-{$ageMax} years",
+            "-{$ageMin} years"
+        );
+
         return [
-            //
+            'diakNev' => $diakNev,
+            'schoolclassId' => $schoolclassId,
+            'neme' => $neme,
+            'iranyitoszam' => $iranyitoszam,
+            'lakHelyseg' => $lakHelyseg,
+            'lakCim' => $lakCim,
+            'szulHelyseg' => $szulHelyseg,
+            'szulDatum' => $szulDatum,
+            'igazolvanyszam' => $igazolvanyszam,
+            'atlag' => $atlag,
+            'osztondij' => $osztondij,
         ];
     }
 }

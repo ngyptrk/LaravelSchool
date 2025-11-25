@@ -19,7 +19,7 @@ class StudentsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, student $student): bool
+    public function view(User $user, Student $student): bool
     {
         return false;
     }
