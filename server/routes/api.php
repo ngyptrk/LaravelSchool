@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PlayingsportController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,10 +59,10 @@ Route::patch('playingsports/{id}', [PlayingsportController::class, 'update']);
 Route::delete('playingsports/{id}', [PlayingsportController::class, 'destroy']);
 //endregion
 
-//region Palyingsport
-Route::get('playingsports', [PlayingsportController::class, 'index']);
-Route::get('playingsports/{id}', [PlayingsportController::class, 'show']);
-Route::post('playingsports', [PlayingsportController::class, 'store']);
-Route::patch('playingsports/{id}', [PlayingsportController::class, 'update']);
-Route::delete('playingsports/{id}', [PlayingsportController::class, 'destroy']);
+//region Student
+Route::get('students', [StudentController::class, 'index']);
+Route::get('students/{id}', [StudentController::class, 'show']);
+Route::post('students', [StudentController::class, 'store']);
+Route::patch('students/{id}', [StudentController::class, 'update']);
+Route::delete('students/{id}', [StudentController::class, 'destroy']);
 //endregion
