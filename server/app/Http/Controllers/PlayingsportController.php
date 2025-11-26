@@ -106,8 +106,24 @@ class PlayingsportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Playingsport $playingsport)
+    public function destroy(int $id)
     {
-        //
+        $row = Playingsport::find($id);
+        if ($row) {
+            # code...
+            $status = 200;
+            $row->delete();
+            $data = [
+                'message' => 'OK',
+                'data' => ['id' => $id]
+            ];
+        } else {
+            $status = 404;
+            $data = [
+                'message' => "Not_Found id: $id ",
+                'data' => null
+            ];
+        }
+                return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     }
 }
