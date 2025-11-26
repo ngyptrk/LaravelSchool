@@ -157,15 +157,16 @@ GET {{host}}/api/students/
 GET {{host}}/api/students/567
 
 
-###delete students
+###delete students by id
 delete {{host}}/api/students/568
 
 # ###post students
-# POST  {{host}}/api/students/123
+# POST  {{host}}/api/students
 # Accept: application/json
 # Content-Type: application/json
 
 # {
+#     "id": 123,
 #     "diakNev": "Tóth Márton",
 #     "schoolclassId": 3,
 #     "neme": true,
@@ -181,6 +182,6 @@ delete {{host}}/api/students/568
 
 
 
-# ###post students
+# ###patch students
 # PATCH {{host}}/api/students
 

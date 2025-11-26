@@ -116,6 +116,7 @@ class StudentController extends Controller
     {
         $row = Student::find($id);
         if ($row) {
+
             $row->delete();
 
             $status = 200;
