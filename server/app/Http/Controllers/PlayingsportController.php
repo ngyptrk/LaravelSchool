@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Playingsport;
 use App\Http\Requests\StorePlayingsportRequest;
 use App\Http\Requests\UpdatePlayingsportRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class PlayingsportController extends Controller
@@ -30,9 +31,6 @@ class PlayingsportController extends Controller
                 'data' => $rows
             ];
         }
-        
-           $sql = 'SELECT * FROM playingsports';
-           $rows = DB::select($sql);
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     
     }
@@ -40,9 +38,34 @@ class PlayingsportController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $id)
+    public function store(StorePlayingsportRequest $request)
     {
-       
+        try {
+            $row = Playingsport::create($request->all());
+ 
+            $data = [
+                'message' => 'ok',
+                'data' => $row
+            ];
+            // Sikeres válasz: 201 Created kód ajánlott új erőforrás létrehozásakor
+            return response()->json($data, 201, options: JSON_UNESCAPED_UNICODE);
+        } catch (QueryException $e) {
+            // Ellenőrizzük, hogy ez egy "Duplicate entry for key" hiba-e (MySQL hibakód: 23000 vagy 1062)
+            if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
+                $data = [
+                    'message' => 'Insert error: The given Id(-s) do not exists in database , please, choose another one.',
+                    'data' => [
+                        'name' => $request->input('name') // Visszaküldhetjük, mi volt a hibás
+                    ]
+                ];
+                // Kliens hiba, ami jelzi a kérés érvénytelenségét
+                
+                return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
+            }
+ 
+            // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt, vagy kezeljük másképp
+            throw $e;
+        }
     }
 
     /**
@@ -75,16 +98,51 @@ class PlayingsportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport)
+    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport, int $id)
     {
         //
+           $row = $playingsport::find($id);
+        if ($row) {
+            # code...
+            $status = 200;
+            $row->update($request->all());
+            $data = [
+                'message' => 'OK',
+                'data' => [$row]
+            ];
+        } else {
+            $status = 404;
+            $data = [
+                'message' => "Patch error. Not_Found id: $id ",
+                'data' => null
+            ];
+        }
+        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Playingsport $playingsport)
+    public function destroy(int $id)
     {
-        //
+        $row = Playingsport::find($id);
+        if ($row) {
+            # code...
+            $status = 200;
+            $row->delete();
+            $data = [
+                'message' => 'OK',
+                'data' => ['id' => $id]
+            ];
+        } else {
+            $status = 404;
+            $data = [
+                'message' => "Not_Found id: $id ",
+                'data' => null
+            ];
+        }
+                return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     }
 }

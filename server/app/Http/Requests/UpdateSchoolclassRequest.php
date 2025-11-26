@@ -22,11 +22,7 @@ class UpdateSchoolclassRequest extends FormRequest
     public function rules(): array
     {
          return [
-            'name' => 'nullable|string',
-            'email' => 'nullable|email',
-            'password' => 'nullable',
-            'role' => 'nullable',
-            
+            'osztalyNev' => 'required|string'
         ];
     }
 }
