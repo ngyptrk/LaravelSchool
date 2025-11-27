@@ -2,7 +2,7 @@ admin: 	-mindent tud, saját magát nem tudja törölni és megváltoztatni a sz
 
 tanár:	
 - Meg tudja tekinteni:
-	- get össze tábla
+	- get összes tábla
 	- post: diak
 	- patch: diak
 	- delete: diak
@@ -12,7 +12,7 @@ tanár:
 diak: 	
 	- get: /api/classes
 	- get: /api/sports
-	- get: /api/plaingsports
+	- get: /api/playingsports
 
 Speciális tekérdezések
 - get /api/studentofclass/1 :
