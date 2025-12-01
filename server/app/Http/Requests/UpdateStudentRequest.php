@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateStudentRequest extends FormRequest
 {
@@ -19,17 +20,16 @@ class UpdateStudentRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules(int $studentId): array
     {
+               // Feltételezve, hogy az ID-t a route-ból kapod, pl. students/{student}
+       $studentId = $this->route('student');  
         return [
-            // return [
-            //
-            'igazolvanyszam' => [
-                'required',
-                'string',
-                'max:20',
-                'unique:students',              
-            ],
-        ];
+                'igazolvanyszam' => [          
+                'required',             
+                'string',             
+                'max:20',           
+                Rule::unique('students')->ignore($studentId), 
+                ]];
     }
 }
