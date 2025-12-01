@@ -174,7 +174,7 @@ Content-Type: application/json
     "lakCim": "Kossuth utca 18.",
     "szulHelyseg": "Nyíregyháza",
     "szulDatum": "2007.11.23",
-    "igazolvanyszam": "AB482897",
+    "igazolvanyszam": "AB482894",
     "atlag": 3.7,
     "osztondij": 25000
 }

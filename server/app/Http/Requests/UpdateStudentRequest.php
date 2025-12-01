@@ -22,7 +22,14 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // return [
             //
+            'igazolvanyszam' => [
+                'required',
+                'string',
+                'max:20',
+                'unique:students',              
+            ],
         ];
     }
 }

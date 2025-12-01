@@ -36,15 +36,12 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             //
-            'igazolvanyszam' => [
-                'required',
-                'string',
-                'max:20',
-                Rule::unique('students')->where(
-                    fn($query) =>
-                    $query->where('schoolclassId', request('schoolclassId'))
-                ),
-            ],
+            // 'igazolvanyszam' => [
+            //     'required',
+            //     'string',
+            //     'max:20',
+            //     'unique:students',              
+            // ],
         ];
     }
 }
