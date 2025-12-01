@@ -22,26 +22,26 @@ class StoreStudentRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    protected function failedValidation(Validator $validator)
-    {
-        // Itt tudod megadni a SAJÁT hibaüzenetedet
-        $response = response()->json([
-            'message' => 'Insert error: The given id number already exists, please choose another one',
-            'errors' => $validator->errors()
-        ], 409, options: JSON_UNESCAPED_UNICODE);
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     // Itt tudod megadni a SAJÁT hibaüzenetedet
+    //     $response = response()->json([
+    //         'message' => 'Insert error: The given id number already exists, please choose another one',
+    //         'errors' => $validator->errors()
+    //     ], 409, options: JSON_UNESCAPED_UNICODE);
 
-        throw new ValidationException($validator, $response);
-    }
+    //     throw new ValidationException($validator, $response);
+    // }
     public function rules(): array
     {
         return [
-            //
-            // 'igazolvanyszam' => [
-            //     'required',
-            //     'string',
-            //     'max:20',
-            //     'unique:students',              
-            // ],
+            
+            'igazolvanyszam' => [
+                'required',
+                'string',
+                'max:20',
+                'unique:students',              
+            ],
         ];
     }
 }
