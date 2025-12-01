@@ -158,7 +158,7 @@ GET {{host}}/api/students/567
 
 
 ###delete students by id
-delete {{host}}/api/students/568
+delete {{host}}/api/students/673
 
 ###post students
 POST  {{host}}/api/students
@@ -174,13 +174,22 @@ Content-Type: application/json
     "lakCim": "Kossuth utca 18.",
     "szulHelyseg": "Nyíregyháza",
     "szulDatum": "2007.11.23",
-    "igazolvanyszam": "AB482817",
+    "igazolvanyszam": "AB482897",
     "atlag": 3.7,
     "osztondij": 25000
 }
 
 
 
-# ###patch students
-# PATCH {{host}}/api/students
+###patch students
+### patch student
+PATCH {{host}}/api/students/567
+Content-Type: application/json
+Accept: application/json
+
+{
+  "diakNev": "Tóth Márton",
+  "atlag": 4.1,
+  "osztondij": 30000
+}
 
