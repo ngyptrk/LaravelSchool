@@ -53,6 +53,7 @@ Route::get('usersme', [UserController::class, 'indexSelf'])
 
 
 
+
 //region Palyingsport
 Route::get('playingsports', [PlayingsportController::class, 'index']);
 Route::get('playingsports/{id}', [PlayingsportController::class, 'show']);
@@ -84,3 +85,5 @@ Route::post('sports', [SportController::class, 'store']);
 Route::patch('sports/{id}', [SportController::class, 'update']);
 Route::delete('sports/{id}', [SportController::class, 'destroy']);
 //endregion
+
+

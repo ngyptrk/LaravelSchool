@@ -22,8 +22,10 @@ class StoreSportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'nullable',
             'sportNev' => 'required|string',
         ];
     }
+
+    
+
 }
