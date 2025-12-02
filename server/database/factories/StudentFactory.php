@@ -15,7 +15,7 @@ class StudentFactory extends Factory
         return \Faker\Factory::create('hu_HU');
     }
 
-    function getScholarShip(float $averageGrade): int
+    public static function getScholarShip(float $averageGrade): int
     {
 
         $scholarshipTiers = [
@@ -29,7 +29,7 @@ class StudentFactory extends Factory
 
         // Az 5.0-ás átlag külön kezelése a maximális díj miatt
         if ($averageGrade >= 5.0) {
-            return 40000;
+            return 60000;
         }
 
         foreach ($scholarshipTiers as $minAverage => $amount) {
@@ -39,7 +39,7 @@ class StudentFactory extends Factory
                 break;
             }
         }
-        return $scholarshipAmount; // 0 Ft-ot ad vissza 4.00 alatti átlag esetén
+        return $scholarshipAmount; // 0 Ft-ot ad vissza 2.00 alatti átlag esetén
     }
 
 
@@ -66,7 +66,7 @@ class StudentFactory extends Factory
         $atlag = rand(10, 50) / 10;  // 1.0 - 5.0 pontos tizedes
 
         // Ösztöndíj
-        $osztondij = $this->getScholarShip($atlag);
+        $osztondij = self::getScholarShip($atlag);
 
         // Osztály és születési dátum
         $randomClass = Schoolclass::inRandomOrder()->first();
