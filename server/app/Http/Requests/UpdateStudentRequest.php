@@ -22,14 +22,28 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules(int $studentId): array
     {
-               // Feltételezve, hogy az ID-t a route-ból kapod, pl. students/{student}
-       $studentId = $this->route('student');  
+    //    $studentId = $this->route('student');  
+    //     return [
+    //             'igazolvanyszam' => [          
+    //             'required',             
+    //             'string',             
+    //             'max:20',           
+    //             Rule::unique('students')->ignore($studentId), 
+    //             ]];
+      // route paraméter neve: students/{studentId}
+        $studentId = $this->route('studentId');
+
         return [
-                'igazolvanyszam' => [          
-                'required',             
-                'string',             
-                'max:20',           
-                Rule::unique('students')->ignore($studentId), 
-                ]];
+            'igazolvanyszam' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('students')
+                    ->ignore($studentId)
+                    ->where(fn($query) =>
+                        $query->where('schoolclassId', $this->schoolclassId)
+                    ),
+            ],
+        ];
     }
 }

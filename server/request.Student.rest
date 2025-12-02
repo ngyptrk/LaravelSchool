@@ -158,7 +158,7 @@ GET {{host}}/api/students/567
 
 
 ###delete students by id
-delete {{host}}/api/students/673
+delete {{host}}/api/students/674
 
 ###post students
 POST  {{host}}/api/students
@@ -183,13 +183,13 @@ Content-Type: application/json
 
 ###patch students
 ### patch student
-PATCH {{host}}/api/students/567
+PATCH {{host}}/api/students/1
 Content-Type: application/json
 Accept: application/json
 
 {
-  "diakNev": "Tóth Márton",
+  "diakNev": "Tóth Géza",
   "atlag": 4.1,
-  "osztondij": 30000
+  "osztondij": 30000,
 }
 
