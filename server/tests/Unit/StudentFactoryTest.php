@@ -66,6 +66,6 @@ class StudentFactoryTest extends TestCase
         $actualAmount = StudentFactory::getScholarShip($averageGrade);
 
         // Assert
-        $this->assertEquals($expectedAmount, $actualAmount, "Az ösztöndíj összege hibás az {$averageGrade} átlag esetén.");
+        $this->assertEquals(expected: $expectedAmount, actual: $actualAmount, message: "Az ösztöndíj összege hibás az {$averageGrade} átlag esetén.");
     }
 }
