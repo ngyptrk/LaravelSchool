@@ -1,0 +1,23 @@
+admin: 	-mindent tud, saját magát nem tudja törölni és megváltoztatni a szerepét de masokét igen.
+
+tanár:	
+- Meg tudja tekinteni:
+	- get összes tábla
+	- post: diak
+	- patch: diak
+	- delete: diak
+	- speciális lekérdezések
+
+
+diak: 	
+	- get: /api/classes
+	- get: /api/sports
+	- get: /api/playingsports
+
+Speciális tekérdezések
+- get /api/studentofclass/1 :
+	- Adott osztály tanulóinak a névsora
+- get /api/classsizes
+- get /api/sizeofschool
+
+

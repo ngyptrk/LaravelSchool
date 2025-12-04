@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Student;
 use Illuminate\Auth\Access\Response;
 
-class StudentsPolicy
+class StudentPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -37,7 +37,7 @@ class StudentsPolicy
      */
     public function update(User $user, Student $student): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class StudentsPolicy
      */
     public function delete(User $user, Student $student): bool
     {
-        return false;
+        return $user->is_admin === 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class StudentsPolicy
      */
     public function restore(User $user, Student $student): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class StudentsPolicy
      */
     public function forceDelete(User $user, Student $student): bool
     {
-        return false;
+        return true;
     }
 }

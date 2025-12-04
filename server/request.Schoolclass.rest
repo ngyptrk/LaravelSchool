@@ -13,7 +13,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "admin@example.com",
+    "email": "vasarlo1@example.com",
     "password": "123"
 }
 
@@ -37,7 +37,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ### post user
-POST {{host}}/api/users
+POST {{host}}/api/users 
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -101,63 +101,13 @@ Authorization: Bearer {{token}}
 ### teszt
 get {{host}}/api/x
 
-### get products
-get {{host}}/api/students
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-
-### get product by id
-get {{host}}/api/students/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-### post products
-POST  {{host}}/api/students
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-    "diakNev": "Molnár Ferenc Caramel",
-    "schoolclassId": 15,
-    "neme": 1,
-    "iranyitoszam": "2766",
-    "lakHelyseg": "Tápiószele",
-    "lakCim": "Seres ut 4.",
-    "szulHelyseg": "Újszász",
-    "szulDatum": "2015-05-28",
-    "igazolvanyszam": "VX1234567",
-    "atlag": "3.0",
-    "osztondij": "25000"
-}
-
-### delete product by id
-delete {{host}}/api/students/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-
-### post products
-PATCH {{host}}/api/products/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-    "price": 1002,
-    "stock": "eee"
-}
-
-
 ### get classes
 GET {{host}}/api/schoolclasses
+Authorization: Bearer {{token}}
 
 ### get class by id
 GET {{host}}/api/schoolclasses/25
+Authorization: Bearer {{token}}
 
 ### post class
 POST {{host}}/api/schoolclasses
@@ -170,7 +120,7 @@ Authorization: Bearer {{token}}
 }
 
 ### delete class by id
-DELETE {{host}}/api/schoolclasses/25
+DELETE {{host}}/api/schoolclasses/26
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -184,3 +134,5 @@ Authorization: Bearer {{token}}
 {
     "osztalyNev": "8boss"
 }
+
+

@@ -9,4 +9,14 @@ class Sport extends Model
 {
     /** @use HasFactory<\Database\Factories\SportsFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'sportNev',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

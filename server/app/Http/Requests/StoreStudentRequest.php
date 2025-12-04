@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
 
 class StoreStudentRequest extends FormRequest
 {
@@ -11,7 +14,7 @@ class StoreStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +22,27 @@ class StoreStudentRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     // Itt tudod megadni a SAJÁT hibaüzenetedet
+    //     $response = response()->json([
+    //         'message' => 'Insert error: The given id number already exists, please choose another one',
+    //         'errors' => $validator->errors()
+    //     ], 409, options: JSON_UNESCAPED_UNICODE);
+
+    //     throw new ValidationException($validator, $response);
+    // }
     public function rules(): array
     {
+
         return [
-            //
+            
+            'igazolvanyszam' => [
+                'required',
+                'string',
+                'max:20',
+                'unique:students',              
+            ],
         ];
     }
 }
